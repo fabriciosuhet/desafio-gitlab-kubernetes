@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: local
+spec:
+  volumes:
+    - name: local
+      persistentVolumeClaim:
+        claimName: local
+  containers:
+    - name: local
+      image: node:20.7.0-alpine3.17
+      ports:
+        - containerPort: 80
+          name: "http-server"
+      volumeMounts:
+        - mountPath: "/usr/src/app"
+          name: local
+
+
